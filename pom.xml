@@ -12,6 +12,7 @@
         <module>config-service</module>
         <module>employee-service</module>
         <module>eureka-service</module>
+        <module>hrprocess-service</module>
     </modules>
 
 </project>
