@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS employeedb;
-GRANT ALL PRIVILEGES ON employeedb.* TO emp@localhost IDENTIFIED BY 'emp';
+GRANT ALL PRIVILEGES ON employeedb.* TO root@localhost;
 
 USE employeedb;
 
