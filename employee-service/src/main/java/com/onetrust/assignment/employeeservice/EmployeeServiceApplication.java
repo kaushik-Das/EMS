@@ -21,7 +21,7 @@ import java.util.List;
 @SpringBootApplication
 public class EmployeeServiceApplication {
 
-    @Bean
+    /*@Bean
     CommandLineRunner commandLineRunner(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository) {
         return employees -> {
             List<Department> departments = new ArrayList<>();
@@ -45,7 +45,7 @@ public class EmployeeServiceApplication {
                 employeeRepository.save(employee);
             }
         };
-    }
+    }*/
 
 
     public static void main(String[] args) {

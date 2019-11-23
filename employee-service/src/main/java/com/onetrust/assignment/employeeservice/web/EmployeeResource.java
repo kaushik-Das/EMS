@@ -49,6 +49,7 @@ public class EmployeeResource {
         newEmployeeDetails.setLastDate(employee.getLastDate());
         newEmployeeDetails.setSalary(employee.getSalary());
         newEmployeeDetails.setStartDate(employee.getStartDate());
+        newEmployeeDetails.setPhoneNumber(employee.getPhoneNumber());
         employeeRepository.save(newEmployeeDetails);
     }
 }

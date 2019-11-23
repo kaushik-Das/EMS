@@ -8,32 +8,33 @@ public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id")
+    private Integer deptId;
 
-    @Column(name = "dept_name")
-    private String name;
+    @Column(name = "name")
+    private String deptName;
 
     public Department() {
     }
 
-    public Department(Integer id, String name) {
-        this.id = id;
-        this.name = name;
+    public Department(Integer deptId, String deptName) {
+        this.deptId = deptId;
+        this.deptName = deptName;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getDeptId() {
+        return deptId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setDeptId(Integer deptId) {
+        this.deptId = deptId;
     }
 
-    public String getName() {
-        return name;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 }

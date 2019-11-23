@@ -1,6 +1,7 @@
 package com.onetrust.assignment.employeeservice.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long empId;
 
     @Column(name = "emp_name")
@@ -39,6 +41,19 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "dept_id")
     private Department department;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Column(name = "phone_number")
+    @NotEmpty
+    @Digits(fraction = 0, integer = 10)
+    private String phoneNumber;
 
     public Long getEmpId() {
         return empId;
@@ -115,6 +130,7 @@ public class Employee {
                 ", startDate=" + startDate +
                 ", lastDate=" + lastDate +
                 ", department=" + department +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }
