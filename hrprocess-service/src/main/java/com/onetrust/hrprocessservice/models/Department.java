@@ -2,31 +2,31 @@ package com.onetrust.hrprocessservice.models;
 
 public class Department {
 
-    private Integer id;
+    private Integer deptId;
 
-    private String name;
+    private String deptName;
 
     public Department() {
     }
 
-    public Department(Integer id, String name) {
-        this.id = id;
-        this.name = name;
+    public Department(Integer deptId, String deptName) {
+        this.deptId = deptId;
+        this.deptName = deptName;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getDeptId() {
+        return deptId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setDeptId(Integer deptId) {
+        this.deptId = deptId;
     }
 
-    public String getName() {
-        return name;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 }

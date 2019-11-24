@@ -6,6 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "employees")
@@ -30,12 +31,10 @@ public class Employee {
     private double salary;
 
     @Column(name = "start_date")
-    @Temporal(TemporalType.DATE)
     @NotNull
     private Date startDate;
 
     @Column(name = "last_date")
-    @Temporal(TemporalType.DATE)
     private Date lastDate;
 
     @ManyToOne
@@ -132,5 +131,26 @@ public class Employee {
                 ", department=" + department +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Double.compare(employee.salary, salary) == 0 &&
+                Objects.equals(empId, employee.empId) &&
+                Objects.equals(empName, employee.empName) &&
+                Objects.equals(address, employee.address) &&
+                Objects.equals(city, employee.city) &&
+                Objects.equals(startDate, employee.startDate) &&
+                Objects.equals(lastDate, employee.lastDate) &&
+                Objects.equals(department, employee.department) &&
+                Objects.equals(phoneNumber, employee.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(empId, empName, address, city, salary, startDate, lastDate, department, phoneNumber);
     }
 }

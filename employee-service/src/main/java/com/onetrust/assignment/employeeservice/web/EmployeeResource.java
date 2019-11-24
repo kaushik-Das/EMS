@@ -24,6 +24,8 @@ public class EmployeeResource {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Employee createEmployee(@Valid @RequestBody Employee employee) {
+        //allowing empId's to be generated from DB/ORM layer.
+        employee.setEmpId(null);
         return employeeRepository.save(employee);
     }
 
@@ -33,15 +35,17 @@ public class EmployeeResource {
     }
 
     @GetMapping(value = "/{employeeId}")
-    public Optional<Employee> getEmployee(@PathVariable("employeeId") long employeeId) {
-        return employeeRepository.findById(employeeId);
+    public Employee getEmployee(@PathVariable("employeeId") long employeeId) {
+        Optional<Employee> employee = employeeRepository.findById(employeeId);
+        if (!employee.isPresent())
+            throw new EmployeeNotFoundException(employeeId);
+        return employee.get();
     }
 
     @PutMapping(value = "/{employeeId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateEmployeeDetails(@PathVariable("employeeId") long employeeId, @Valid @RequestBody Employee employee) {
+    public Employee updateEmployeeDetails(@PathVariable("employeeId") long employeeId, @Valid @RequestBody Employee employee) {
         final Optional<Employee> oldEmployeeDetails = employeeRepository.findById(employeeId);
-        final Employee newEmployeeDetails = oldEmployeeDetails.orElseThrow(() -> new ResourceNotFoundException("Employee " + employeeId + " not found"));
+        final Employee newEmployeeDetails = oldEmployeeDetails.orElseThrow(() -> new EmployeeNotFoundException(employeeId));
         newEmployeeDetails.setCity(employee.getCity());
         newEmployeeDetails.setAddress(employee.getAddress());
         newEmployeeDetails.setDepartment(employee.getDepartment());
@@ -50,6 +54,6 @@ public class EmployeeResource {
         newEmployeeDetails.setSalary(employee.getSalary());
         newEmployeeDetails.setStartDate(employee.getStartDate());
         newEmployeeDetails.setPhoneNumber(employee.getPhoneNumber());
-        employeeRepository.save(newEmployeeDetails);
+        return employeeRepository.save(newEmployeeDetails);
     }
 }

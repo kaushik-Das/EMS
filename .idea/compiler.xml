@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="employee-service" />
-        <module name="ems-assignment" />
-        <module name="hrprocess-service" />
-        <module name="config-service" />
         <module name="eureka-service" />
+        <module name="ems-assignment" />
+        <module name="config-service" />
+        <module name="hrprocess-service" />
       </profile>
     </annotationProcessing>
   </component>

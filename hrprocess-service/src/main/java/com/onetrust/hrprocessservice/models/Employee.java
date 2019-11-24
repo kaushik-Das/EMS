@@ -1,9 +1,9 @@
 package com.onetrust.hrprocessservice.models;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-
 
 public class Employee {
 
@@ -22,6 +22,16 @@ public class Employee {
     private Date lastDate;
 
     private Department department;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    private String phoneNumber;
 
     public Long getEmpId() {
         return empId;
@@ -98,6 +108,7 @@ public class Employee {
                 ", startDate=" + startDate +
                 ", lastDate=" + lastDate +
                 ", department=" + department +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }
