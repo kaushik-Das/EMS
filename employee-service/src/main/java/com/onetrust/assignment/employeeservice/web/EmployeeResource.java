@@ -30,18 +30,13 @@ public class EmployeeResource {
 
     @PostMapping
     public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
-        return createOrUpdateEmployee(employee);
+        return new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<Employees> getAllEmployees() {
-        try {
-            List<Employee> allEmployees = employeeRepository.findAll();
-            return new ResponseEntity<>(new Employees(allEmployees, allEmployees.size()), HttpStatus.OK);
-        } catch (Exception ex) {
-            logger.error(ex.getMessage());
-        }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        List<Employee> allEmployees = employeeRepository.findAll();
+        return new ResponseEntity<>(new Employees(allEmployees, allEmployees.size()), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{employeeId}")
@@ -66,15 +61,6 @@ public class EmployeeResource {
         newEmployeeDetails.setSalary(employee.getSalary());
         newEmployeeDetails.setStartDate(employee.getStartDate());
         newEmployeeDetails.setPhoneNumber(employee.getPhoneNumber());
-        return createOrUpdateEmployee(newEmployeeDetails);
-    }
-
-    private ResponseEntity<Employee> createOrUpdateEmployee(Employee employee) {
-        try {
-            return new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
-        } catch (Exception ex) {
-            logger.error(ex.getMessage());
-        }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
     }
 }

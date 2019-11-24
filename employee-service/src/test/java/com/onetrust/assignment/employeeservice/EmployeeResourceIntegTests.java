@@ -58,7 +58,7 @@ public class EmployeeResourceIntegTests {
         mockMvc.perform(post("/employees").contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8")
                 .content(objectMapper.writeValueAsString(employee)))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
