@@ -90,7 +90,7 @@ class EmployeeResourceTests {
     }
 
     @Test
-    void shouldThrowExceptionUpdateEmployeeWhenEmpIdNotFound() throws Exception {
+    void shouldThrowExceptionOnUpdateEmployeeWhenEmpIdNotFound() throws Exception {
         Employee employee = setUpEmployee();
         given(employeeRepository.findById(any())).willThrow(EmployeeNotFoundException.class);
         mvc.perform(put("/employees/1").contentType(MediaType.APPLICATION_JSON)

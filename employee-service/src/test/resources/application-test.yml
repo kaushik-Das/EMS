@@ -4,6 +4,8 @@ spring:
   datasource:
     schema: classpath*:db/hsql/schema.sql
     data: classpath*:db/hsql/data.sql
+  profiles:
+    active: test
 
 logging.level.org.springframework: INFO
 
